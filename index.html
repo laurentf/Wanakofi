@@ -62,7 +62,7 @@
 
   <script>
 
-  //bloquer appli si IE et IE < IE11
+  // Creepy code to display a message for lower versions of IE (OK for IE >= 9) 
   function getIEVersion() {
 	    var ua = window.navigator.userAgent;
 	    var msie = ua.indexOf('MSIE ');
@@ -74,7 +74,6 @@
 	    }
 
 	    if (trident > 0) {
-	        // IE 11 (or newer) => return version number
 	        var rv = ua.indexOf('rv:');
 	        return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
 	    }
@@ -85,7 +84,7 @@
 
   var versionIE = getIEVersion();
   if(versionIE && versionIE < 9) {
-	  document.body.innerHTML = '<div style="left:50%; text-align:center;"><h2>Your browser can\'t handle HTML5 features sorry.</div>';
+	  document.body.innerHTML = '<div style="left:50%; text-align:center;"><h2>Dude... your browser is too old, sorry.</h2></div>';
   }
   </script>
 
