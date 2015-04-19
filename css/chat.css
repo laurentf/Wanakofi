@@ -1,3 +1,8 @@
+    body{
+        background-color:white;
+        background-image:url('./dots.png');
+    }
+
     .conversation-wrap
     {
         box-shadow: -2px 0 3px #ddd;
