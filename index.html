@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="comagApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="">
+
+    <title>Test</title>
+
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/loading-bar/loading-bar.min.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/chat.css" />
+    <link rel="stylesheet" href="js/ng/angular/angular-csp.css" />
+  
+    <script type="text/javascript">
+
+        var v = 1; // utile pour rechargement fichiers statiques (js, partials html) la premiere fois
+
+    </script>
+
+  </head>
+
+  <body ng-cloak>
+
+  <div ng-controller="MenuCtrl">
+    <div ng-include="'angular/app/partials/inc/navigation.html'" ng-if="location.path() !== '/login'"></div>
+  </div>
+
+  <div class="container">
+
+	   <div ng-view view-animations></div>
+
+  <div ng-include="'angular/app/partials/inc/footer.html'" ng-if="location.path() !== '/login'"></div>
+
+  </div> <!-- /container -->
+
+  <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  <script type="text/javascript" src="js/jquery/peity/jquery.peity.min.js"></script>
+  <script type="text/javascript" src="js/ng/angular/angular.min.js"></script>
+  <script type="text/javascript" src="js/ng/angular-route/angular-route.min.js"></script>
+  <script type="text/javascript" src="js/ng/angular-animate/angular-animate.min.js"></script>
+  <script type="text/javascript" src="js/ng/angular-sanitize/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="js/ng/angular-resource/angular-resource.min.js"></script>
+  <script type="text/javascript" src="js/ng/loading-bar/loading-bar.min.js"></script>
+  <script type="text/javascript" src="js/ng/peity/angular-peity.js"></script>
+  <script type="text/javascript" src="js/ng/bootstrap-ui/ui-bootstrap-tpls-0.12.0.js"></script>
+  <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap/ie10-viewport-bug-workaround.js"></script>
+
+  <!-- angular app -->
+  <script type="text/javascript" src="angular/app/app.js"></script>
+  <script type="text/javascript" src="angular/app/controllers/controllers.js"></script>
+  <script type="text/javascript" src="angular/app/filters/filters.js"></script>
+  <script type="text/javascript" src="angular/app/directives/directives.js"></script>
+  <script type="text/javascript" src="angular/app/resources/resources.js"></script>
+  <script type="text/javascript" src="angular/app/services/services.js"></script>
+
+  <script>
+
+  //bloquer appli si IE et IE < IE11
+  function getIEVersion() {
+	    var ua = window.navigator.userAgent;
+	    var msie = ua.indexOf('MSIE ');
+	    var trident = ua.indexOf('Trident/');
+
+	    if (msie > 0) {
+	        // IE 10 or older => return version number
+	        return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+	    }
+
+	    if (trident > 0) {
+	        // IE 11 (or newer) => return version number
+	        var rv = ua.indexOf('rv:');
+	        return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+	    }
+
+	    // other browser
+	    return false;
+   }
+
+  var versionIE = getIEVersion();
+  if(versionIE && versionIE < 9) {
+	  document.body.innerHTML = '<div style="left:50%; text-align:center;"><h2>Your browser can\'t handle HTML5 features sorry.</div>';
+  }
+  </script>
+
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

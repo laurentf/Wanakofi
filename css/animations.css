@@ -1,0 +1,103 @@
+/*
+ * animations css stylesheet
+ */
+
+/* fade in - fade out */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@-moz-keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@-webkit-keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@-moz-keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@-webkit-keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+    from    { transform:translateX(100%); }
+    to      { transform: translateX(0); }
+}
+@-moz-keyframes slideInRight {
+    from    { -moz-transform:translateX(100%); }
+    to      { -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInRight {
+    from    { -webkit-transform:translateX(100%); }
+    to      { -webkit-transform: translateX(0); }
+}
+
+/* slide in from the left */
+@keyframes slideInLeft {
+    from    { transform:translateX(-100%); }
+    to      { transform: translateX(0); }
+}
+@-moz-keyframes slideInLeft {
+    from    { -moz-transform:translateX(-100%); }
+    to      { -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInLeft {
+    from    { -webkit-transform:translateX(-100%); }
+    to      { -webkit-transform: translateX(0); }
+}
+
+/* slide in from the bottom */
+@keyframes slideInUp {
+    from    { transform:translateY(100%); }
+    to      { transform: translateY(0); }
+}
+@-moz-keyframes slideInUp {
+    from    { -moz-transform:translateY(100%); }
+    to      { -moz-transform: translateY(0); }
+}
+@-webkit-keyframes slideInUp {
+    from    { -webkit-transform:translateY(100%); }
+    to      { -webkit-transform: translateY(0); }
+}
+
+.enter-left.ng-leave        {
+     
+}
+.enter-left.ng-enter        {  
+     -webkit-animation:fade-in 0.5s linear;
+    -moz-animation:fade-in 0.5s linear;
+    animation:fade-in 0.5s linear;     
+}
+
+.enter-right.ng-leave        {
+  
+}
+
+.enter-right.ng-enter        {  
+    -webkit-animation:slideInRight 0.5s both ease-in;
+    -moz-animation:slideInRight 0.5s both ease-in;
+    animation:slideInRight 0.5s both ease-in;    
+}
+
+.alert.ng-enter {
+	 -webkit-animation:fade-in 0.5s linear;
+    -moz-animation:fade-in 0.5s linear;
+    animation:fade-in 0.5s linear;  
+}
+
+.alert.ng-leave {
+     -webkit-animation:fade-out 0.5s linear;
+    -moz-animation:fade-out 0.5s linear;
+    animation:fade-out 0.5s linear; 
+}
