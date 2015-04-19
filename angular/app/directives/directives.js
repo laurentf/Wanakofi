@@ -1,7 +1,9 @@
 'use strict';
 
-var myappDirectives = angular.module('myappDirectives', []);
 /* Directives */
+
+var myappDirectives = angular.module('myappDirectives', []);
+
 myappDirectives.directive('viewAnimations', ['$route',
 function($route) {
 	  return {

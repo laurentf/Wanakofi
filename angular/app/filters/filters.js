@@ -9,7 +9,6 @@ myappFilters.filter('checkmark', function() {
 		return input ? '\u2713' : '\u2718';
 	};
 });
-/* Filters */
 
 myappFilters.filter('textFormat', function() {
 	return function(input) {
