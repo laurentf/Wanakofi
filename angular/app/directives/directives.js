@@ -1,8 +1,8 @@
 'use strict';
 
-var comagDirectives = angular.module('comagDirectives', []);
+var myappDirectives = angular.module('myappDirectives', []);
 /* Directives */
-comagDirectives.directive('viewAnimations', ['$route',
+myappDirectives.directive('viewAnimations', ['$route',
 function($route) {
 	  return {
 		    restrict: 'A',
@@ -17,7 +17,7 @@ function($route) {
 }]);
 
 
-comagDirectives.directive('confirmButton', ['$document','$parse',
+myappDirectives.directive('confirmButton', ['$document','$parse',
     function($document, $parse) {
     return {
         restrict: 'A',

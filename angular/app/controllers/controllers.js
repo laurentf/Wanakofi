@@ -2,9 +2,9 @@
 
 /* Controllers */
 
-var comagControllers = angular.module('comagControllers', []);
+var myappControllers = angular.module('myappControllers', []);
 
-comagControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils',
+myappControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils',
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils) {
 	
     $scope.partage = Partage; //objet de partage de données
@@ -22,7 +22,7 @@ comagControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$location',
     
 }]);
 
-comagControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils',
+myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils',
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils) {
 	
     $scope.partage = Partage; //objet de partage de données
@@ -89,7 +89,7 @@ comagControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
     
 }]);
 
-comagControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils',
+myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils',
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils) {
 	
     $scope.partage = Partage; //objet de partage de données

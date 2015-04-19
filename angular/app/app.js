@@ -2,22 +2,22 @@
 
 /* App Module */
 
-var comagApp = angular.module('comagApp', [
+var myApp = angular.module('myApp', [
   'ngRoute',
   'ngAnimate',
   'ngSanitize',
-  'comagControllers',
-  'comagFilters',
-  'comagResources',
-  'comagServices',
-  'comagDirectives',
+  'myappControllers',
+  'myappFilters',
+  'myappResources',
+  'myappServices',
+  'myappDirectives',
   'ui.bootstrap',
   'angular-loading-bar',
   'angular-peity'
 ]);
 
 //routage
-comagApp.config(['$routeProvider', '$provide',
+myApp.config(['$routeProvider', '$provide',
   function($routeProvider, $provide) {
 
 	// configuration surcharge exception angular
@@ -48,7 +48,7 @@ comagApp.config(['$routeProvider', '$provide',
   }]);
 
 
-comagApp.run(function($rootScope, $location) {
+myApp.run(function($rootScope, $location) {
     $rootScope.location = $location;
 });
 

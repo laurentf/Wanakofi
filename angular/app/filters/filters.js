@@ -2,16 +2,16 @@
 
 /* Filters */
 
-var comagFilters = angular.module('comagFilters', []);
+var myappFilters = angular.module('myappFilters', []);
 
-comagFilters.filter('checkmark', function() {
+myappFilters.filter('checkmark', function() {
 	return function(input) {
 		return input ? '\u2713' : '\u2718';
 	};
 });
 /* Filters */
 
-comagFilters.filter('formaterTexte', function() {
+myappFilters.filter('textFormat', function() {
 	return function(input) {
 		return input.replace(/\n/g, "<"+"br/>");
 	};

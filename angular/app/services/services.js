@@ -2,21 +2,22 @@
 
 /* Services */
 
-var comagServices = angular.module('comagServices', []);
+var myappServices = angular.module('myappServices', []);
 
-comagServices.value('Partage', {
+// Very useful piece of code in order to share data between controllers 
+myappServices.value('Partage', {
 	localisation : null
 });
 
-comagServices.factory('Utils', [ function() {
+myappServices.factory('Utils', [ function() {
 	var utils = {
-		isChaineVide : function(chaine) {
+		isestr : function(chaine) {
 			return ($.trim(chaine) == '');
 		},
-		inverserChaine : function(chaine) {
+		invstr : function(chaine) {
 			return (chaine.split("").reverse().join(""));
 		},
-		convertirChaineMontant : function(montant) {
+		strtof : function(montant) {
 			return parseFloat(montant);
 		}
 	};
