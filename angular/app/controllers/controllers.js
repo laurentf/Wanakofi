@@ -26,6 +26,7 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils) {
 	
     $scope.partage = Partage; //objet de partage de données
+
     $scope.message = "";
     $scope.errors = []; //liste des erreurs
     $scope.alert = {text:'', type:''}; //liste des alertes 
@@ -89,19 +90,25 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
     
 }]);
 
-myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils',
- function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils) {
+myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils', 'mySocket',
+ function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils, mySocket) {
 	
     $scope.partage = Partage; //objet de partage de données
-    $scope.partage.hideMenu = false;
     $scope.message = "";
     $scope.errors = []; //liste des erreurs
     $scope.alert = {text:'', type:''}; //liste des alertes 
 
     // INIT
     $scope.init = function(){
-    	
+		mySocket.emit('join', $scope.partage.localisation);
+		$scope.$emit('socket:join', $scope.partage.localisation);
+		
+		mySocket.on('loc', function(data){
+			console.log('YOOOO'+data);
+			Partage.localisation = data;
+		});
     }
+		
     $scope.init();
-    
+	
 }]);

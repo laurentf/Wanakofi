@@ -6,6 +6,7 @@ var myApp = angular.module('myApp', [
   'ngRoute',
   'ngAnimate',
   'ngSanitize',
+  'btford.socket-io',
   'myappControllers',
   'myappFilters',
   'myappResources',
@@ -14,7 +15,15 @@ var myApp = angular.module('myApp', [
   'ui.bootstrap',
   'angular-loading-bar',
   'angular-peity'
-]);
+]).
+factory('mySocket', function (socketFactory) {
+  var myIoSocket = io.connect('http://localhost:3000/socket.io/socket.io.js');
+  var mySocket = socketFactory({
+    ioSocket: myIoSocket
+  });
+  mySocket.forward('broadcast');
+  return mySocket;
+});
 
 //routage
 myApp.config(['$routeProvider', '$provide',
