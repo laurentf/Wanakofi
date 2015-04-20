@@ -17,11 +17,11 @@ var myApp = angular.module('myApp', [
   'angular-peity'
 ]).
 factory('mySocket', function (socketFactory) {
-  var myIoSocket = io.connect('http://localhost:3000/socket.io/socket.io.js');
+  var myIoSocket = io.connect(host_name + ':3000');
   var mySocket = socketFactory({
     ioSocket: myIoSocket
   });
-  mySocket.forward('broadcast');
+  //mySocket.forward('broadcast');
   return mySocket;
 });
 

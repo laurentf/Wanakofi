@@ -6,7 +6,9 @@ var myappServices = angular.module('myappServices', []);
 
 // Very useful piece of code in order to share data between controllers 
 myappServices.value('Partage', {
-	localisation : null
+	city : null,
+	username : null,
+	avatar : null
 });
 
 myappServices.factory('Utils', [ function() {

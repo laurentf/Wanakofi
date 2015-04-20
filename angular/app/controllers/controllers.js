@@ -7,11 +7,10 @@ var myappControllers = angular.module('myappControllers', []);
 myappControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils',
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils) {
 	
-    $scope.partage = Partage; //objet de partage de données
-    
+    $scope.partage = Partage; // Share data between controllers
     $scope.message = "";
-    $scope.errors = []; //liste des erreurs
-    $scope.alert = {text:'', type:''}; //liste des alertes 
+    $scope.errors = []; // errors
+    $scope.alert = {text:'', type:''}; // alert 
 
     // INIT
     $scope.init = function(){
@@ -25,11 +24,7 @@ myappControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$location',
 myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils',
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils) {
 	
-    $scope.partage = Partage; //objet de partage de données
-
-    $scope.message = "";
-    $scope.errors = []; //liste des erreurs
-    $scope.alert = {text:'', type:''}; //liste des alertes 
+    $scope.partage = Partage; // Share data between controllers
 
     $scope.geocoder = null;
 
@@ -48,7 +43,7 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
         }
 
         function errorFunction() {
-            Partage.localisation = "Geocoder failed";
+            Partage.city = "GEO_ERROR";
         }
 
         function initializeGeolocation() {
@@ -62,22 +57,22 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
                     if (status == google.maps.GeocoderStatus.OK) {
                         if (results[1]) {
                             var arrAddress = results;
-                            console.log(results);
+                            //console.log(results);
                             // iterate through address_component array
                             $.each(arrAddress,
                                         function(i, address_component) {
                                             if (address_component.types[0] == "locality") {
                                                 var completeCityName = address_component.address_components[0].long_name;
-                                                console.log("City: "
-                                                                + completeCityName);
-                                                Partage.localisation = completeCityName;
+                                                //console.log("City: " + completeCityName);
+                                                Partage.city = completeCityName; 
+                                                Partage.username = 'Laurent B.';  
                                             }
                                         });
                         } else {
-                            Partage.localisation = "No result";
+                            Partage.city = "NOWHERE";
                         }
                     } else {
-                        Partage.localisation = "Geocoder failed due to: " + status;
+                        Partage.city = "GEO_ERROR";
                     }
                 });
         }
@@ -87,28 +82,51 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
     }
 
     $scope.init();
-    
+
 }]);
 
 myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils', 'mySocket',
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils, mySocket) {
-	
-    $scope.partage = Partage; //objet de partage de données
-    $scope.message = "";
-    $scope.errors = []; //liste des erreurs
-    $scope.alert = {text:'', type:''}; //liste des alertes 
 
+    $scope.partage = Partage; // Share data between controllers
+    $scope.message = "";
+    $scope.errors = []; // errors
+    $scope.alert = {text:'', type:''}; // alert
+
+    $scope.usersList = [];
+    $scope.numUsers = 0;
+  
     // INIT
     $scope.init = function(){
-		mySocket.emit('join', $scope.partage.localisation);
-		$scope.$emit('socket:join', $scope.partage.localisation);
-		
-		mySocket.on('loc', function(data){
-			console.log('YOOOO'+data);
-			Partage.localisation = data;
-		});
+
+        // when geoloc is ready
+        $scope.$watch('partage.city', function(newValue, oldValue) {
+            if(newValue !== null) {
+                mySocket.emit('NEW_USER', {username: $scope.partage.username , city: $scope.partage.city});
+            }
+        });
+
+        mySocket.on('LOGIN', function(data){
+            $scope.numUsers = data.numUsers;
+            console.log('LOGIN');
+        });
+
+        mySocket.on('NEW_USER', function(data){
+            $scope.numUsers = data.numUsers;
+            console.log('NEW USER ' + data.username + ' ' + data.city);
+            $scope.usersList.push({username: data.username, city: data.city});
+        });
+
+        mySocket.on('USER_LEFT', function(data){
+            $scope.numUsers = data.numUsers;
+            console.log('USER LEFT ' + data.username + ' ' + data.city);
+        });
+
+	
     }
 		
     $scope.init();
+
+   
 	
 }]);
