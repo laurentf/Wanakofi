@@ -41,6 +41,12 @@ var checkLoggedin = function($q, $timeout, $http, $location, $rootScope, Partage
           Partage.avatar = 'http://graph.facebook.com/'+user.id+'/picture';
       }
 
+      // twitter connect
+      if(user.provider == "twitter"){
+          Partage.username = user.username;
+          Partage.avatar = user.photos[0].value;
+      }
+
 
   		if (user !== '0'){ // ok
   			deferred.resolve(); // authenticated
