@@ -8,7 +8,8 @@ var myappServices = angular.module('myappServices', []);
 myappServices.value('Partage', {
 	city : null,
 	username : null,
-	avatar : null
+	avatar : null,
+	isScrolling : false
 });
 
 myappServices.factory('Utils', [ function() {
