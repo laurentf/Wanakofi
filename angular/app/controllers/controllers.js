@@ -47,7 +47,7 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
         }
 
         function errorFunction() {
-            Partage.city = "GEO_ERROR1";
+            Partage.city = "GEO_ERROR_1";
         }
 
         function initializeGeolocation() {
@@ -72,10 +72,10 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
                                             }
                                         });
                         } else {
-                            Partage.city = "NOWHERE";
+                            Partage.city = "NO_WHERE";
                         }
                     } else {
-                        Partage.city = "GEO_ERROR2";
+                        Partage.city = "GEO_ERROR_2";
                     }
                 });
         }

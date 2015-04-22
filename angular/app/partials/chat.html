@@ -8,14 +8,14 @@
         </div>
         <div class="panel-body">
 		        
-                <div ng-repeat="message in messages" class="media msg ">
+                <div ng-repeat="mess in messages" class="media msg">
                     <a class="pull-left" href="#">
-                        <img class="media-object" alt="avatar" style="width: 32px; height: 32px;" src="{{message.avatar}}">
+                        <img class="media-object" alt="avatar" style="width: 32px; height: 32px; border-radius: 50%;" src="{{mess.avatar}}">
                     </a>
                     <div class="media-body">
-                        <small class="pull-right time"><i class="fa fa-clock-o"></i>{{message.moment}}</small>
-                        <h5 class="media-heading" style="color:dodgerblue; font-size: 12px;">{{message.username}}</h5>
-                        <small class="col-lg-10" style="word-break: break-all;">{{message.message}}</small>
+                        <small class="pull-right time"><i class="fa fa-clock-o"></i>{{mess.moment}}</small>
+                        <h5 class="media-heading" style="color:dodgerblue; font-size: 12px;">{{mess.username}}</h5>
+                        <small class="col-lg-10" style="word-break: break-all;">{{mess.message}}</small>
                     </div>
                 </div>
 
