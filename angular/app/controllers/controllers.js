@@ -29,7 +29,7 @@ myappControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$location',
 myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils',
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils) {
 	
-    $scope.partage = Partage; // Share data between controllers
+    $scope.partage = Partage; // share data between controllers
     $scope.geocoder = null;
 
     // INIT
@@ -39,7 +39,7 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
         }
-        // Get the latitude and the longitude;
+        // get the latitude and the longitude;
         function successFunction(position) {
             var lat = position.coords.latitude;
             var lng = position.coords.longitude;
@@ -61,14 +61,15 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
                     if (status == google.maps.GeocoderStatus.OK) {
                         if (results[1]) {
                             var arrAddress = results;
-                            //console.log(results);
+                            // console.log(results);
                             // iterate through address_component array
                             $.each(arrAddress,
                                         function(i, address_component) {
                                             if (address_component.types[0] == "locality") {
                                                 var completeCityName = address_component.address_components[0].long_name;
-                                                //console.log("City: " + completeCityName);
+                                                // console.log("City: " + completeCityName);
                                                 Partage.city = completeCityName; 
+                                                // Partage.city = 'Test';
                                             }
                                         });
                         } else {
@@ -88,17 +89,17 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
 
 }]);
 
-myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils', 'mySocket',
- function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils, mySocket) {
+myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils', 'mySocket', 'MessageStorage',
+ function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils, mySocket, MessageStorage) {
 
-    $scope.partage = Partage; // Share data between controllers
+    $scope.partage = Partage; // share data between controllers
    
     $scope.errors = []; // errors
     $scope.alert = {text:'', type:''}; // alert
 
 	$scope.message = ""; // chat message
+	$scope.messages = null // chat messages
     $scope.usersList = [];
-	$scope.messages = [] // chat messages
     $scope.numUsers = 0;
   
     // INIT
@@ -107,29 +108,60 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
         // when geoloc is ready
         $scope.$watch('partage.city', function(newValue, oldValue) {
             if(newValue !== null) {
-                mySocket.emit('NEW_USER', {username: $scope.partage.username , city: $scope.partage.city, avatar: $scope.partage.avatar});
+                // if the geoloc is not in error, then weve got a city to connect
+                if(newValue !== 'GEO_ERROR_1' && newValue !== 'GEO_ERROR_2' && newValue !== 'NO_WHERE'){
+                    MessageStorage.setId(newValue); // set storage id
+                    $scope.messages = MessageStorage.get(); // chat messages from localStorage
+                    mySocket.emit('NEW_USER', {id: $scope.partage.id, provider: $scope.partage.provider, username: $scope.partage.username , city: $scope.partage.city, avatar: $scope.partage.avatar});
+                }
+                else{
+                    // if geoloc is in error, redirect to login
+                    $location.path('/login');
+                }
             }
         });
+					
+		// destroy socket when leaving the chat
+		$scope.$on('$destroy', function () {
+			  mySocket.disconnect();
+		});
 
         mySocket.on('LOGIN', function(data){
             $scope.numUsers = data.numUsers;
-            console.log('LOGIN ' + data.numUsers);
+            // scroll bottom if necessary
+                if(!Partage.isScrolling){
+                    Partage.isScrolling = true;
+                    $("html, body").animate(
+                    { scrollTop: $(document).height() },
+                    1000,
+                        function(){
+                            Partage.isScrolling = false;
+                        }
+                    );
+                }
+            // console.log('LOGIN ' + data.numUsers);
         });
 
         mySocket.on('NEW_USER', function(data){
             $scope.numUsers = data.numUsers;
-            console.log('NEW USER ' + data.username + ' ' + data.city + ' ' + data.avatar);
             $scope.usersList.push({username: data.username, city: data.city, avatar: data.avatar});
+			// console.log('NEW USER ' + data.username + ' ' + data.city + ' ' + data.avatar);
         });
 
         mySocket.on('USER_LEFT', function(data){
             $scope.numUsers = data.numUsers;
-            console.log('USER LEFT ' + data.username + ' ' + data.city);
+            // console.log('USER LEFT ' + data.username + ' ' + data.city);
         });
 		
 		mySocket.on('NEW_MESSAGE', function(data){
-            console.log ('get a new message');
-			$scope.messages.push(data);
+            // limit to 100 messages (by city) in the localStorage
+            if($scope.messages.length == 100){
+                 $scope.messages.shift();
+            }
+            // console.log ('get a new message');
+            $scope.messages.push(data);
+            // store the messages list in the localStorage (max = 100)
+            MessageStorage.put($scope.messages);
 			
 			// scroll bottom if necessary
 			if(!Partage.isScrolling){
@@ -164,7 +196,7 @@ myappControllers.controller('MessageCtrl', ['$scope', '$routeParams', '$location
 	
 	$scope.sendMessage = function (){
 		if($.trim($scope.message)!= ""){
-			console.log('send message')
+			// console.log('send message')
             var mome = new Date().getTime();
 			mySocket.emit('NEW_MESSAGE', {message : $scope.message, moment: mome});
 			
@@ -178,10 +210,9 @@ myappControllers.controller('MessageCtrl', ['$scope', '$routeParams', '$location
 						Partage.isScrolling = false;
 					}
 				);
-			}
-			
+			}	
 		}
-		$scope.message="";
+		$scope.message = "";
 		$('#chatInput').focus();
 	}
 	

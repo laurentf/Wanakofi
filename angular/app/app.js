@@ -23,11 +23,10 @@ factory('mySocket', function (socketFactory) {
   var mySocket = socketFactory({
     ioSocket: myIoSocket
   });
-  //mySocket.forward('broadcast');
   return mySocket;
 });
 
-// small function in order to check if the user is authenticated on the nodejs server
+// check login middleware, handle authentication response
 var checkLoggedin = function($q, $timeout, $http, $location, $rootScope, Partage){ 
 	var deferred = $q.defer(); // promise
 	
@@ -35,27 +34,40 @@ var checkLoggedin = function($q, $timeout, $http, $location, $rootScope, Partage
        withCredentials: true
     }).success(function(user){ 
 
-      // facebook connect
-      if(user.provider == "facebook"){
-          Partage.username = user.name.givenName + ' ' + user.name.familyName.substr(0,1) + '.';
-          Partage.avatar = 'http://graph.facebook.com/'+user.id+'/picture';
+		if (user !== '0'){ // is logged in
+			// set profile info
+			
+			// set provider
+			Partage.provider = user.provider;
+			// set id
+			Partage.id = user.id;
+		  
+			// facebook connect specific info
+			if(user.provider == "facebook"){
+				Partage.username = user.name.givenName + ' ' + user.name.familyName.substr(0,1) + '.';
+				Partage.avatar = 'http://graph.facebook.com/'+user.id+'/picture';
+			}
+
+			// twitter connect specific info
+			if(user.provider == "twitter"){
+				Partage.username = user.username;
+				Partage.avatar = user.photos[0].value;
+			}
+
+      // google connect specific info
+      if(user.provider == "google"){
+        Partage.username = user.name.givenName + ' ' + user.name.familyName.substr(0,1) + '.';
+        Partage.avatar = user.photos[0].value;
       }
-
-      // twitter connect
-      if(user.provider == "twitter"){
-          Partage.username = user.username;
-          Partage.avatar = user.photos[0].value;
-      }
-
-
-  		if (user !== '0'){ // ok
-  			deferred.resolve(); // authenticated
-  		}
-  		else { // need to log in
-  			deferred.reject(); // not Authenticated 
-  			$location.url('/login'); // redirect to login
-  		} 
-  		}); 
+			
+			deferred.resolve(); // authenticated
+		}
+		else { // is not logged in
+			deferred.reject(); // not authenticated 
+			$location.url('/login'); // redirect to login
+		} 
+			
+		}); 
   		return deferred.promise;
 };
 
@@ -67,7 +79,7 @@ myApp.config(['$routeProvider', '$provide', '$httpProvider',
 	
 	// allow cross domains http request
 	//$httpProvider.defaults.useXDomain = true;
-  //delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    //delete $httpProvider.defaults.headers.common['X-Requested-With'];
 	
 	// configuration routes application
     $routeProvider.

@@ -1,22 +1,45 @@
-<div class="row">
-	<div class="col-lg-1 col-md-1 col-sm-2"><img src="img/coffee.png"></div>
-	<div class="col-lg-11 col-md-11 col-sm-10"><h2>Wanakofi</h2></div>
-</div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#/login"><img src="img/coffee_inverse.png" style="width:30px;" /></a>
+          <a class="navbar-brand" href="#/login">Wanakofi</a>
+        </div>
 
-	<div class="row text-center">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          
+        </div>
+  </div>
+</nav>
 
-		<h3>Log in {{partage.city}}</h3>
+	<div class="row text-center" style="padding-top:10%;">
 
-			<a href="http://localhost:3000/auth/facebook"><img tooltip="Log in with Facebook"  tooltip-placement="left" src="img/fb128.png" /></a>
-			<a href="http://localhost:3000/auth/twitter"><img tooltip="Log in with Twitter"  tooltip-placement="right" src="img/tw128.png" /></a>
-			<!-- <a href="http://localhost:3000/auth/google"><img src="img/gp128.png" /></a>-->
-	
+		<div class="col-md-3">&nbsp;</div>
+		<div class="col-md-6">
+
+			<div class="panel panel-default" id="login-box">
+				    <div class="panel-heading">
+	    		   		<h3>Log in {{partage.city}} </h3>
+	  			    </div>
+				    <div class="panel-body">
+						<a href="http://localhost:3000/auth/facebook"><img class="log-coffee" tooltip="Log in with Facebook"  tooltip-placement="bottom" src="img/fb128.png" /></a>
+						<a href="http://localhost:3000/auth/twitter"><img  class="log-coffee3" tooltip="Log in with Twitter"  tooltip-placement="bottom" src="img/tw128.png" /></a>
+						<a href="http://localhost:3000/auth/google"><img class="log-coffee" tooltip="Log in with Google"  tooltip-placement="bottom" src="img/gp128.png" /></a>
+				    </div>
+			</div>
+
+		</div>
+		<div class="col-md-3">&nbsp;</div>
+		
 	</div>
 	
-<hr>
-
 <footer>
-  <p>&copy; Wanakofi 2015</p>
+  <p></p>
 </footer>
 
 
