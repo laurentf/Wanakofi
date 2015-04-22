@@ -15,7 +15,7 @@ myappControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$location',
     // INIT
     $scope.init = function(){
         // CLEAN SESSION 
-    	$http.get('http://localhost:3000/logout', {
+    	$http.get('https://powerful-ridge-1197.herokuapp.com/logout', {
          withCredentials: true
          }).success(function(data){
             // do something ?
