@@ -81,6 +81,7 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
 	$scope.messages = []; // chat messages
     $scope.usersList = [];
     $scope.numUsers = 0;
+    $scope.numUsersLabel = "";
   
     // INIT
     $scope.init = function(){
@@ -156,6 +157,15 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
 			
         });
 	
+    }
+
+    $scope.displayUsersNumber = function(){
+        if($scope.numUsers == 1){
+            $scope.numUsersLabel = "forever alone";
+        }
+        else{
+            $scope.numUsersLabel = $scope.numUsers "users"; 
+        }
     }
 	
     $scope.init();
