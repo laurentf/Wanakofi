@@ -59,6 +59,14 @@ var checkLoggedin = function($q, $timeout, $http, $location, $rootScope, Partage
         Partage.username = user.name.givenName + ' ' + user.name.familyName.substr(0,1) + '.';
         Partage.avatar = user.photos[0].value;
       }
+
+      if(Partage.room != ""){
+      deferred.resolve(); // room ok
+      } 
+      else{
+          deferred.reject(); // room not ok 
+          $location.url('/lobby'); // redirect to lobby
+      }
 			
 			deferred.resolve(); // authenticated
 		}
@@ -69,21 +77,6 @@ var checkLoggedin = function($q, $timeout, $http, $location, $rootScope, Partage
 			
 		}); 
   		return deferred.promise;
-};
-
-// check the user joined a room middleware, handle chat access
-var joinedRoom = function($q, $timeout, $http, $location, $rootScope, Partage){ 
-  var deferred = $q.defer(); // promise
-  
-  if(Partage.room != ""){
-      deferred.resolve(); // room ok
-  } 
-  else{
-      deferred.reject(); // room not ok 
-      $location.url('/lobby'); // redirect to lobby
-  }
-
-  return deferred.promise;
 };
 
 //routage
@@ -109,7 +102,7 @@ myApp.config(['$routeProvider', '$provide', '$httpProvider',
               enter: 'enter-left',
               leave: 'leave-left'
           },
-		  resolve: { loggedin: checkLoggedin, joinedRoom: joinedRoom } // (got to be authenticated and has joined a room) to enter in the chatroom
+		  resolve: { loggedin: checkLoggedin } // (got to be authenticated and has joined a room) to enter in the chatroom
       }).
       when('/lobby', {
           templateUrl: 'angular/app/partials/lobby.html',
