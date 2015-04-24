@@ -96,8 +96,8 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
 
         // NEW USER ENTER
         MessageStorage.setId(Partage.room); // set storage id
--       $scope.messages = MessageStorage.get(); // chat messages from localStorage
--       mySocket.emit('NEW_USER', {id: $scope.partage.id, provider: $scope.partage.provider, username: $scope.partage.username , room: $scope.partage.room, avatar: $scope.partage.avatar});
+        $scope.messages = MessageStorage.get(); // chat messages from localStorage
+        mySocket.emit('NEW_USER', {id: $scope.partage.id, provider: $scope.partage.provider, username: $scope.partage.username , room: $scope.partage.room, avatar: $scope.partage.avatar});
 
 		// destroy socket when leaving the chat
 		$scope.$on('$destroy', function () {
