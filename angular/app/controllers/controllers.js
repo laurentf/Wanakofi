@@ -86,7 +86,7 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
     $scope.init = function(){
 
         // we need the room name in the route
-        if($routeParams.room == null || $.trim($routeParams.room) == ""){
+        if($.trim($routeParams.room) == ""){
             $location('/lobby');
         }
 
@@ -95,7 +95,7 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
         $scope.room = $routeParams.room;
 
         // NEW USER ENTER
-        MessageStorage.setId(newValue); // set storage id
+        MessageStorage.setId($scope.room); // set storage id
 -       $scope.messages = MessageStorage.get(); // chat messages from localStorage
 -       mySocket.emit('NEW_USER', {id: $scope.partage.id, provider: $scope.partage.provider, username: $scope.partage.username , room: $scope.partage.room, avatar: $scope.partage.avatar});
 
