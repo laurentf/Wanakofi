@@ -108,6 +108,7 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
 
         mySocket.on('LOGIN', function(data){
             $scope.numUsers = data.numUsers;
+            $scope.displayUsersNumber();
             // scroll bottom if necessary
                 if(!Partage.isScrolling){
                     Partage.isScrolling = true;
@@ -125,11 +126,13 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
         mySocket.on('NEW_USER', function(data){
             $scope.numUsers = data.numUsers;
             $scope.usersList.push({username: data.username, room: data.room, avatar: data.avatar});
+            $scope.displayUsersNumber();
 			// console.log('NEW USER ' + data.username + ' ' + data.room + ' ' + data.avatar);
         });
 
         mySocket.on('USER_LEFT', function(data){
             $scope.numUsers = data.numUsers;
+            $scope.displayUsersNumber();
             // console.log('USER LEFT ' + data.username + ' ' + data.room);
         });
 		
@@ -164,7 +167,7 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
             $scope.numUsersLabel = "forever alone";
         }
         else{
-            $scope.numUsersLabel = $scope.numUsers "users"; 
+            $scope.numUsersLabel = $scope.numUsers + " users"; 
         }
     }
 	
