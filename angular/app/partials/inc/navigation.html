@@ -17,16 +17,12 @@
           </ul>
 
           <form ng-hide="{{partage.hideStuff}}" class="navbar-form navbar-left" role="search">
-
-                <div class="form-group">
-                   
-                  <input ng-model="room" ui-keypress="{13:'join()'}" type="text" id="joinInput" placeholder="New tag" class="form-control">
-                  <button type="submit" ng-click="join()" class="btn btn-default"><div class="input-group-addon"></div>join</button>
-
-                </div>
-                
+                      <div class="form-group">
+                        <input ng-model="room" ui-keypress="{13:'join()'}" type="text" id="joinInput" placeholder="New tag" class="form-control">
+                      </div>
+                      <button type="submit" ng-click="join()" class="btn btn-default"><div class="input-group-addon"></div>join</button>
           </form>
-          
+
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#/login"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> log out</a></li>
           </ul>
