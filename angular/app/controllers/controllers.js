@@ -34,7 +34,12 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
 
     // INIT
     $scope.init = function(){
-
+        if($location.path() == "/lobby"){
+            Partage.hideStuff = true;
+        }
+        else{
+            Partage.hideStuff = false;
+        }
     }
 
     $scope.join = function (){
