@@ -18,14 +18,13 @@
 
           <form ng-hide="{{partage.hideStuff}}" class="navbar-form navbar-left" role="search">
 
-                 <div class="form-group">
+                <div class="form-group">
+                   
+                  <input ng-model="room" ui-keypress="{13:'join()'}" type="text" id="joinInput" placeholder="New tag" class="form-control">
+                  <button type="submit" ng-click="join()" class="btn btn-default"><div class="input-group-addon"></div>join</button>
 
-                    <div class="input-group">
-                        <input ng-model="room" ui-keypress="{13:'join()'}" type="text" id="joinInput" placeholder="New tag" class="form-control">
-                        <div class="input-group-addon"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></div>
-                   </div>
-
-                  <button type="submit" ng-click="join()" class="btn btn-default">join</button>
+                </div>
+                
           </form>
           
           <ul class="nav navbar-nav navbar-right">
