@@ -54,12 +54,12 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
 myappControllers.controller('LobbyCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils',
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils) {
     
+    Partage.hideStuff = true;
     $scope.partage = Partage; // share data between controllers
     $scope.room = "";
 
     // INIT
     $scope.init = function(){
-        Partage.hideStuff = true;
         $('#lobbyInput').focus();
     }
 
@@ -82,6 +82,7 @@ myappControllers.controller('LobbyCtrl', ['$scope', '$routeParams', '$location',
 myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils', 'mySocket', 'MessageStorage',
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils, mySocket, MessageStorage) {
 
+    Partage.hideStuff = false;
     $scope.partage = Partage; // share data between controllers
    
     $scope.errors = []; // errors
@@ -97,7 +98,6 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
   
     // INIT
     $scope.init = function(){
-        Partage.hideStuff = false;
 
         // we need the room name in the route
         if($.trim($routeParams.room) == ""){
