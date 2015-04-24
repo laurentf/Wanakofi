@@ -8,7 +8,7 @@ var myappServices = angular.module('myappServices', []);
 myappServices.value('Partage', {
 	id: null,
 	provider: null,
-	city : null,
+	room : null,
 	username : null,
 	avatar : null,
 	isScrolling : false

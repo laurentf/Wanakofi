@@ -71,15 +71,26 @@ var checkLoggedin = function($q, $timeout, $http, $location, $rootScope, Partage
   		return deferred.promise;
 };
 
+// check the user joined a room middleware, handle chat access
+var joinedRoom = function($q, $timeout, $http, $location, $rootScope, Partage){ 
+  var deferred = $q.defer(); // promise
+  
+  if(Partage.room != ""){
+      deferred.resolve(); // room ok
+  } 
+  else{
+      deferred.reject(); // room not ok 
+      $location.url('/lobby'); // redirect to lobby
+  }
+
+  return deferred.promise;
+};
+
 //routage
 myApp.config(['$routeProvider', '$provide', '$httpProvider', 
   function($routeProvider, $provide, $httpProvider) {
 
 	// configuration surcharge exception angular TODO
-	
-	// allow cross domains http request
-	//$httpProvider.defaults.useXDomain = true;
-    //delete $httpProvider.defaults.headers.common['X-Requested-With'];
 	
 	// configuration routes application
     $routeProvider.
@@ -91,17 +102,26 @@ myApp.config(['$routeProvider', '$provide', '$httpProvider',
       		    leave: 'leave-left'
       		}
       }).
-      when('/chat', {
+      when('/chat/:room', {
           templateUrl: 'angular/app/partials/chat.html',
           controller: 'ChatCtrl',
           animations: {
               enter: 'enter-left',
               leave: 'leave-left'
           },
-		  resolve: { loggedin: checkLoggedin } // got to be authenticated to enter in the chatroom
+		  resolve: { loggedin: checkLoggedin, joinedRoom: joinedRoom } // (got to be authenticated and has joined a room) to enter in the chatroom
+      }).
+      when('/lobby', {
+          templateUrl: 'angular/app/partials/lobby.html',
+          controller: 'LobbyCtrl',
+          animations: {
+              enter: 'enter-left',
+              leave: 'leave-left'
+          },
+      resolve: { loggedin: checkLoggedin } // got to be authenticated to enter in the lobby
       }).
       otherwise({
-          redirectTo: '/login'
+          redirectTo: '/lobby'
       });
 
   }]);
