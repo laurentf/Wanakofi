@@ -34,12 +34,7 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
 
     // INIT
     $scope.init = function(){
-        if($location.path() == "/lobby"){
-            Partage.hideStuff = true;
-        }
-        else{
-            Partage.hideStuff = false;
-        }
+        
     }
 
     $scope.join = function (){
@@ -64,6 +59,7 @@ myappControllers.controller('LobbyCtrl', ['$scope', '$routeParams', '$location',
 
     // INIT
     $scope.init = function(){
+        Partage.hideStuff = true;
         $('#lobbyInput').focus();
     }
 
@@ -101,6 +97,7 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
   
     // INIT
     $scope.init = function(){
+        Partage.hideStuff = false;
 
         // we need the room name in the route
         if($.trim($routeParams.room) == ""){
