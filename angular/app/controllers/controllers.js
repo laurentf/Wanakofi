@@ -75,13 +75,29 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
     $scope.errors = []; // errors
     $scope.alert = {text:'', type:''}; // alert
 
+    $scope.room = "";
+
 	$scope.message = ""; // chat message
-	$scope.messages = null // chat messages
+	$scope.messages = [] // chat messages
     $scope.usersList = [];
     $scope.numUsers = 0;
   
     // INIT
     $scope.init = function(){
+
+        // we need the room name in the route
+        if($routeParams.room == null || $.trim($routeParams.room) == ""){
+            $location('/lobby');
+        }
+
+        // init room from the route
+        Partage.room = $routeParams.room;
+        $scope.room = $routeParams.room;
+
+        // NEW USER ENTER
+        MessageStorage.setId(newValue); // set storage id
+-       $scope.messages = MessageStorage.get(); // chat messages from localStorage
+-       mySocket.emit('NEW_USER', {id: $scope.partage.id, provider: $scope.partage.provider, username: $scope.partage.username , room: $scope.partage.room, avatar: $scope.partage.avatar});
 
 		// destroy socket when leaving the chat
 		$scope.$on('$destroy', function () {

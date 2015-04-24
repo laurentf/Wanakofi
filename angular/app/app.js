@@ -59,15 +59,7 @@ var checkLoggedin = function($q, $timeout, $http, $location, $rootScope, Partage
         Partage.username = user.name.givenName + ' ' + user.name.familyName.substr(0,1) + '.';
         Partage.avatar = user.photos[0].value;
       }
-
-      if(Partage.room != ""){
-      deferred.resolve(); // room ok
-      } 
-      else{
-          deferred.reject(); // room not ok 
-          $location.url('/lobby'); // redirect to lobby
-      }
-			
+		
 			deferred.resolve(); // authenticated
 		}
 		else { // is not logged in
