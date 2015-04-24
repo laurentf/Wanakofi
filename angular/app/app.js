@@ -19,7 +19,7 @@ var myApp = angular.module('myApp', [
   'angular-peity'
 ]).
 factory('mySocket', function (socketFactory) {
-  var myIoSocket = io.connect('http://powerful-ridge-1197.herokuapp.com');
+  var myIoSocket = io.connect(serverHost);
   var mySocket = socketFactory({
     ioSocket: myIoSocket
   });
@@ -30,7 +30,7 @@ factory('mySocket', function (socketFactory) {
 var checkLoggedin = function($q, $timeout, $http, $location, $rootScope, Partage){ 
 	var deferred = $q.defer(); // promise
 	
-	$http.get('http://powerful-ridge-1197.herokuapp.com/loggedin', {
+	$http.get(serverHost + '/loggedin', {
        withCredentials: true
     }).success(function(user){ 
 

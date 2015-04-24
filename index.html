@@ -9,18 +9,69 @@
     <link rel="icon" href="favicon.ico">
 
     <title>Wanakofi</title>
-
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/loading-bar/loading-bar.min.css" />
-    <link rel="stylesheet" href="css/animations.css" />
-    <link rel="stylesheet" href="css/custom.css" />
-    <link rel="stylesheet" href="js/ng/angular/angular-csp.css" />
-  
-    <script type="text/javascript">
-
-        var v = '1.00'; 
-        var host_name = "http://powerful-ridge-1197.herokuapp.com/";
 	
+	<script type="text/javascript">
+	
+		// CSS AND JS LIST OF ELEMENTS
+
+        var v = '?v=1a'; 
+		var serverHost = "http://powerful-ridge-1197.herokuapp.com"; // SERVER HOSTNAME (the front need to connect to this server / API)
+		var clientHost = "http://vast-headland-2092.herokuapp.com"; // CLIENT HOSTNAME (this client hostname)
+		
+		var cssElements = [
+		'css/bootstrap/bootstrap.min.css',
+		'css/loading-bar/loading-bar.min.css',
+		'css/animations.css'+v,
+		'css/custom.css'+v,
+		'js/ng/angular/angular-csp.css'
+		]
+		
+		var jsElements = [
+		serverHost+'/socket.io/socket.io.js',
+		'js/jquery/jquery.min.js',
+		'http://maps.googleapis.com/maps/api/js?sensor=false',
+		'js/jquery/peity/jquery.peity.min.js',
+		'js/ng/angular/angular.min.js',
+		'js/ng/angular-route/angular-route.min.js',
+		'js/ng/angular-animate/angular-animate.min.js',
+		'js/ng/angular-sanitize/angular-sanitize.min.js',
+		'js/ng/angular-resource/angular-resource.min.js',
+		'js/ng/angular-cookies/angular-cookies.min.js',
+		'js/ng/angular-socket-io/socket.min.js',
+		'js/ng/loading-bar/loading-bar.min.js',
+		'js/ng/peity/angular-peity.js',
+		'js/ng/bootstrap-ui/ui-bootstrap-tpls-0.12.0.js',
+		'js/ng/ui-utils/ui-utils.min.js',
+		'js/bootstrap/bootstrap.min.js',
+		'js/bootstrap/ie10-viewport-bug-workaround.js',
+		'angular/app/app.js'+v,
+		'angular/app/controllers/controllers.js'+v,
+		'angular/app/filters/filters.js'+v,
+		'angular/app/directives/directives.js'+v,
+		'angular/app/resources/resources.js'+v,
+		'angular/app/services/services.js'+v
+		]
+		
+		function insertElements(list, type){
+		    var listToInsert = '';
+			if(type == 'CSS'){
+				list.forEach(function(css){ 
+					listToInsert += '<link rel="stylesheet" href="'+css+'" \/>'; 
+				});
+			}
+			else if(type == 'JS'){
+				list.forEach(function(js){ 
+					listToInsert +=  '<script type="text\/javascript" src="'+js+'"><\/script>';
+				});
+			}
+			alert(listToInsert);
+			document.write(listToInsert);
+		}
+		
+		// insert all css tags
+		insertElements(cssElements, 'CSS');
+
+       
     </script>
 
   </head>
@@ -39,33 +90,10 @@
   
   <div ng-include="'angular/app/partials/inc/footer.html'" ng-if="location.path() !== '/login'"></div>
 
-  <script type="text/javascript" src="http://powerful-ridge-1197.herokuapp.com/socket.io/socket.io.js"></script>
-  <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-  <script type="text/javascript" src="js/jquery/peity/jquery.peity.min.js"></script>
-  <script type="text/javascript" src="js/ng/angular/angular.min.js"></script>
-  <script type="text/javascript" src="js/ng/angular-route/angular-route.min.js"></script>
-  <script type="text/javascript" src="js/ng/angular-animate/angular-animate.min.js"></script>
-  <script type="text/javascript" src="js/ng/angular-sanitize/angular-sanitize.min.js"></script>
-  <script type="text/javascript" src="js/ng/angular-resource/angular-resource.min.js"></script>
-  <script type="text/javascript" src="js/ng/angular-cookies/angular-cookies.min.js"></script>
-  <script type="text/javascript" src="js/ng/angular-socket-io/socket.min.js"></script>
-  <script type="text/javascript" src="js/ng/loading-bar/loading-bar.min.js"></script>
-  <script type="text/javascript" src="js/ng/peity/angular-peity.js"></script>
-  <script type="text/javascript" src="js/ng/bootstrap-ui/ui-bootstrap-tpls-0.12.0.js"></script>
-  <script type="text/javascript" src="js/ng/ui-utils/ui-utils.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap/ie10-viewport-bug-workaround.js"></script>
-
-  <!-- angular app -->
-  <script type="text/javascript" src="angular/app/app.js"></script>
-  <script type="text/javascript" src="angular/app/controllers/controllers.js"></script>
-  <script type="text/javascript" src="angular/app/filters/filters.js"></script>
-  <script type="text/javascript" src="angular/app/directives/directives.js"></script>
-  <script type="text/javascript" src="angular/app/resources/resources.js"></script>
-  <script type="text/javascript" src="angular/app/services/services.js"></script>
-
   <script>
+  
+  // insert all js tags
+  insertElements(jsElements, 'JS');
 
   // Creepy code to display a message for lower versions of IE (OK for IE >= 9) 
   function getIEVersion() {
