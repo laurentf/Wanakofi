@@ -30,10 +30,21 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils) {
 	
     $scope.partage = Partage; // share data between controllers
+    $scope.room = "";
 
     // INIT
     $scope.init = function(){
 
+    }
+
+    $scope.join = function (){
+        if($.trim($scope.room)!= ""){
+            Partage.room = $scope.room;
+            $location.path('/chat/'+Partage.room);
+        }
+        else{
+            $('#joinInput').focus();     
+        }
     }
 
     $scope.init();
