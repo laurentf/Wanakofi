@@ -78,7 +78,7 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
     $scope.room = "";
 
 	$scope.message = ""; // chat message
-	$scope.messages = [] // chat messages
+	$scope.messages = []; // chat messages
     $scope.usersList = [];
     $scope.numUsers = 0;
   
