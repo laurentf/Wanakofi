@@ -38,12 +38,12 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
     }
 
     $scope.join = function (){
-        if($.trim($scope.room)!= ""){
+        if($.trim($scope.room) != ""){
             Partage.room = $scope.room;
             $location.path('/chat/'+Partage.room);
         }
         else{
-            $('#joinInput').focus();     
+            $('#changeInput').focus();     
         }
     }
 
@@ -54,7 +54,6 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
 myappControllers.controller('LobbyCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils',
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils) {
     
-    Partage.hideStuff = true;
     $scope.partage = Partage; // share data between controllers
     $scope.room = "";
 
@@ -64,7 +63,7 @@ myappControllers.controller('LobbyCtrl', ['$scope', '$routeParams', '$location',
     }
 
     $scope.join = function (){
-        if($.trim($scope.room)!= ""){
+        if($.trim($scope.room) != ""){
             Partage.room = $scope.room;
             $location.path('/chat/'+Partage.room);
         }
@@ -82,7 +81,6 @@ myappControllers.controller('LobbyCtrl', ['$scope', '$routeParams', '$location',
 myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils', 'mySocket', 'MessageStorage',
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils, mySocket, MessageStorage) {
 
-    Partage.hideStuff = false;
     $scope.partage = Partage; // share data between controllers
    
     $scope.errors = []; // errors
