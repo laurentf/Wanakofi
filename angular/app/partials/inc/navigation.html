@@ -16,7 +16,7 @@
             <li><a href="#/chat" class="active">{{partage.username}}<span class="sr-only">(current)</span></a></li>
           </ul>
 
-          <div class="navbar-form navbar-left" role="search">
+          <div ng-hide="hideStuff" class="navbar-form navbar-left" role="search">
                       <div class="form-group">
                         <input ng-model="room" ui-keypress="{13:'change()'}" type="text" id="changeInput" placeholder="Tag" class="form-control">
                       </div>
