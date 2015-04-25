@@ -149,7 +149,7 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
             $scope.usersList.push({username: data.username, room: data.room, avatar: data.avatar});
             $scope.displayUsersNumber();
             var mome = new Date().getTime();
-            $scope.messages.push({username: '', avatar: 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=', message: '### 'data.username + ' just joined the room ###', moment: mome});
+            $scope.messages.push({username: '', avatar: 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=', message: '###' + data.username + ' just joined the room ###', moment: mome});
 			// console.log('NEW USER ' + data.username + ' ' + data.room + ' ' + data.avatar);
         });
 
@@ -157,7 +157,7 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
             $scope.numUsers = data.numUsers;
             $scope.displayUsersNumber();
             var mome = new Date().getTime();
-            $scope.messages.push({username: '', avatar: 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=', message: '### 'data.username + ' just left the room ###', moment: mome});
+            $scope.messages.push({username: '', avatar: 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=', message: '###' + data.username + ' just left the room ###', moment: mome});
             // console.log('USER LEFT ' + data.username + ' ' + data.room);
         });
 		
