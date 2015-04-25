@@ -64,7 +64,7 @@ myappControllers.controller('LobbyCtrl', ['$scope', '$routeParams', '$location',
 
     // INIT
     $scope.init = function(){
-        $('#lobbyInput').focus();
+
     }
 
     $scope.join = function (){
@@ -73,8 +73,7 @@ myappControllers.controller('LobbyCtrl', ['$scope', '$routeParams', '$location',
             $location.path('/chat/'+Partage.room);
         }
         else{
-            $scope.room = "";
-            $('#lobbyInput').focus();     
+            $scope.room = "";     
         }
     }
 
@@ -104,7 +103,7 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
   
     // INIT
     $scope.init = function(){
-
+        $('#chatInput').focus();
         // we need the room name in the route
         if($.trim($routeParams.room) == ""){
             $location.path('/lobby');
@@ -150,7 +149,7 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
             $scope.usersList.push({username: data.username, room: data.room, avatar: data.avatar});
             $scope.displayUsersNumber();
             var mome = new Date().getTime();
-            $scope.messages.push({username: 'System', avatar: 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=', message: '### ' + data.username + ' just joined the room ###', moment: mome});
+            $scope.messages.push({username: 'System', avatar: 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=', message: '### ' + data.username + ' just joined the room', moment: mome});
 			// console.log('NEW USER ' + data.username + ' ' + data.room + ' ' + data.avatar);
         });
 
@@ -158,7 +157,7 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
             $scope.numUsers = data.numUsers;
             $scope.displayUsersNumber();
             var mome = new Date().getTime();
-            $scope.messages.push({username: 'System', avatar: 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=', message: '### ' + data.username + ' just left the room ###', moment: mome});
+            $scope.messages.push({username: 'System', avatar: 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=', message: '### ' + data.username + ' just left the room', moment: mome});
             // console.log('USER LEFT ' + data.username + ' ' + data.room);
         });
 		
@@ -190,7 +189,7 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
 
     $scope.displayUsersNumber = function(){
         if($scope.numUsers == 1){
-            $scope.numUsersLabel = "forever alone";
+            $scope.numUsersLabel = "lonely user";
         }
         else{
             $scope.numUsersLabel = $scope.numUsers + " users"; 
