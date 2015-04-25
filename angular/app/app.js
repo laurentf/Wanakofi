@@ -19,7 +19,9 @@ var myApp = angular.module('myApp', [
   'angular-peity'
 ]).
 factory('mySocket', function (socketFactory) {
-  var myIoSocket = io.connect(serverHost);
+  var myIoSocket = io.connect(serverHost, {
+    forceNew: true
+  });
   var mySocket = socketFactory({
     ioSocket: myIoSocket
   });
