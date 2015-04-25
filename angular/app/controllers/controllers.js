@@ -28,8 +28,8 @@ myappControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$location',
     
 }]);
 
-myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils',
- function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils) {
+myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils', 'mySocket',
+ function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils, mySocket) {
 	
     $scope.partage = Partage; // share data between controllers
     $scope.room = "";
