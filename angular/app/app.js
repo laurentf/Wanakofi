@@ -16,6 +16,7 @@ var myApp = angular.module('myApp', [
   'ui.bootstrap',
   'ui.utils',
   'angular-loading-bar',
+  'ngClipboard',
   'angular-peity'
 ]).
 factory('mySocket', function (socketFactory) {
