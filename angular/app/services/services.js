@@ -11,6 +11,7 @@ myappServices.value('Partage', {
 	room : "",
 	username : "",
 	avatar : "",
+	hideStuff : false,
 	isScrolling : false
 });
 

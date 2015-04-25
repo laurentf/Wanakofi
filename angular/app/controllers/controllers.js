@@ -7,6 +7,7 @@ var myappControllers = angular.module('myappControllers', []);
 myappControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$location', '$http', '$timeout', '$filter', 'Partage', 'Utils',
  function($scope, $routeParams, $location, $http, $timeout, $filter, Partage, Utils) {
 	
+    Partage.hideStuff = false;
     $scope.partage = Partage; // Share data between controllers
     $scope.message = "";
     $scope.errors = []; // errors
@@ -37,7 +38,7 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
         
     }
 
-    $scope.join = function (){
+    $scope.change = function (){
         if($.trim($scope.room) != ""){
             Partage.room = $scope.room;
             $location.path('/chat/'+Partage.room);
@@ -54,6 +55,7 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
 myappControllers.controller('LobbyCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils',
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils) {
     
+    Partage.hideStuff = true;
     $scope.partage = Partage; // share data between controllers
     $scope.room = "";
 
@@ -81,6 +83,7 @@ myappControllers.controller('LobbyCtrl', ['$scope', '$routeParams', '$location',
 myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils', 'mySocket', 'MessageStorage',
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils, mySocket, MessageStorage) {
 
+    Partage.hideStuff = false;
     $scope.partage = Partage; // share data between controllers
    
     $scope.errors = []; // errors
