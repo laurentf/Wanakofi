@@ -100,6 +100,7 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
     $scope.usersList = [];
     $scope.numUsers = 0;
     $scope.numUsersLabel = "";
+    $scope.fullUrl = "";
   
     // INIT
     $scope.init = function(){
@@ -112,6 +113,8 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
         // init room from the route
         Partage.room = $routeParams.room;
         $scope.room = $routeParams.room;
+
+        $scope.fullUrl = location.absUrl();
 
         $scope.displayUsersNumber();
 

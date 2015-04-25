@@ -4,10 +4,9 @@
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-          <h3 class="panel-title"><strong>#{{partage.room}}</strong> - {{numUsersLabel}}</h3>
+          <h3 class="panel-title"><span tooltip="{{fullUrl}}" class="glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;<strong>#{{partage.room}}</strong> - {{numUsersLabel}}</h3>
         </div>
         <div class="panel-body">
-		        
                 <div ng-repeat="mess in messages track by mess.moment" class="media msg">
                     <a class="pull-left" href="#">
                         <img class="media-object" alt="avatar" style="width: 32px; height: 32px; border-radius: 50%;" src="{{mess.avatar}}">
