@@ -108,6 +108,8 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
         Partage.room = $routeParams.room;
         $scope.room = $routeParams.room;
 
+        $scope.displayUsersNumber();
+
         // NEW USER ENTER
         MessageStorage.setId(Partage.room); // set storage id
         $scope.messages = MessageStorage.get(); // chat messages from localStorage
