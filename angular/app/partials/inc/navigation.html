@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav ng-controller="MenuCtrl" class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -18,10 +18,9 @@
 
           <div class="navbar-form navbar-left" role="search">
                       <div class="form-group">
-                        <input ng-model="room" ui-keypress="{13:'change()'}" type="text" id="changeInput" placeholder="New tag" class="form-control">
+                        <input ng-model="room" ui-keypress="{13:'change()'}" type="text" id="changeInput" placeholder="Tag" class="form-control">
                       </div>
-                      <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
-                      <button type="submit" ng-click="change()" class="btn btn-default">join</button>
+                      <button type="submit" ng-click="change()" class="btn btn-default">change</button>
           </div>
 
           <ul class="nav navbar-nav navbar-right">
