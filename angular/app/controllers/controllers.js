@@ -39,6 +39,12 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
        
     }
 
+    $scope.logout = function () {
+        Partage.room = "";
+        mySocket.disconnect();
+        $location.path('/login');
+    }
+
     $scope.change = function (){
         $location.path('/lobby');
     }
@@ -117,8 +123,8 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
 
 		// destroy socket when leaving the chat
 		$scope.$on('$destroy', function () {
-              Partage.room = "";
-			  mySocket.disconnect();
+              //Partage.room = "";
+			  //mySocket.disconnect();
 		});
 
         mySocket.on('LOGIN', function(data){
