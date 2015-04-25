@@ -7,6 +7,8 @@ var myappControllers = angular.module('myappControllers', []);
 myappControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$location', '$http', '$timeout', '$filter', 'Partage', 'Utils',
  function($scope, $routeParams, $location, $http, $timeout, $filter, Partage, Utils) {
 	
+    Partage.hideStuff = false;
+
     $scope.partage = Partage; // Share data between controllers
     $scope.message = "";
     $scope.errors = []; // errors
@@ -31,15 +33,15 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
 	
     $scope.partage = Partage; // share data between controllers
     $scope.room = "";
-
+   
     // INIT
     $scope.init = function(){
-        
+       
     }
 
     $scope.change = function (){
         if($.trim($scope.room) != ""){
-            window.location.href = clientHost + '/chat/'+Partage.room;
+            window.location.href = clientHost + '/#chat/'+Partage.room;
         }
         else{
             $('#changeInput').focus();     
@@ -53,8 +55,11 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
 myappControllers.controller('LobbyCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils',
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils) {
     
+    Partage.hideStuff = true;
+
     $scope.partage = Partage; // share data between controllers
     $scope.room = "";
+    $scope.hideStuff = Partage.hideStuff;
 
     // INIT
     $scope.init = function(){
@@ -81,12 +86,14 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
  function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils, mySocket, MessageStorage) {
 
     Partage.hideStuff = false;
+
     $scope.partage = Partage; // share data between controllers
    
     $scope.errors = []; // errors
     $scope.alert = {text:'', type:''}; // alert
 
     $scope.room = "";
+    $scope.hideStuff = Partage.hideStuff;
 
 	$scope.message = ""; // chat message
 	$scope.messages = []; // chat messages
