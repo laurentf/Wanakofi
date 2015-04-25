@@ -40,12 +40,7 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
     }
 
     $scope.change = function (){
-        if($.trim($scope.room) != ""){
-            window.location.href = clientHost + '/#chat/' + $scope.room;
-        }
-        else{
-            $('#changeInput').focus();     
-        }
+        $location.path('/lobby');
     }
 
     $scope.init();
