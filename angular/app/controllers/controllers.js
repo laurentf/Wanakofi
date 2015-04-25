@@ -114,7 +114,7 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
         Partage.room = $routeParams.room;
         $scope.room = $routeParams.room;
 
-        $scope.fullUrl = location.absUrl();
+        $scope.fullUrl = $location.absUrl();
 
         $scope.displayUsersNumber();
 
