@@ -47,6 +47,7 @@ myappControllers.controller('MenuCtrl', ['$scope', '$routeParams', '$location', 
 
     $scope.change = function (){
         $location.path('/lobby');
+        $('#lobbyInput').focus();
     }
 
     $scope.init();
@@ -64,7 +65,7 @@ myappControllers.controller('LobbyCtrl', ['$scope', '$routeParams', '$location',
 
     // INIT
     $scope.init = function(){
-
+        $('#lobbyInput').focus();
     }
 
     $scope.join = function (){
@@ -104,7 +105,6 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
   
     // INIT
     $scope.init = function(){
-        $('#chatInput').focus();
         // we need the room name in the route
         if($.trim($routeParams.room) == ""){
             $location.path('/lobby');
@@ -115,8 +115,8 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
         $scope.room = $routeParams.room;
 
         $scope.fullUrl = $location.absUrl();
-
         $scope.displayUsersNumber();
+        $('#chatInput').focus();
 
         // NEW USER ENTER
         MessageStorage.setId(Partage.room); // set storage id
@@ -131,6 +131,7 @@ myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', 
 		});
 
         mySocket.on('LOGIN', function(data){
+            $('#chatInput').focus();
             $scope.numUsers = data.numUsers;
             $scope.displayUsersNumber();
             // scroll bottom if necessary
