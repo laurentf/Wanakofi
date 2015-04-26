@@ -238,9 +238,12 @@ myappControllers.controller('MessageCtrl', ['$scope', '$routeParams', '$location
 		$('#chatInput').focus();
 	}
 
-    $scope.sendImage = function (){
-       
-    }
+    $scope.$watch('uploadme', function(oldValue, newValue){
+        if(newValue != ""){
+            var mome = new Date().getTime();
+            mySocket.emit('NEW_MESSAGE', {message : '<img src="' + newValue + '" />', moment: mome});
+        }
+    });
 	
     $scope.init();
 
