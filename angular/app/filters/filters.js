@@ -18,11 +18,12 @@ myappFilters.filter('textFormat', function() {
 
 myApp.filter('urlToLink', function () {
     var urlPattern = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/gi;
-    var imgPattern = /\[img\](.*?)\[\/img\]/i;
+    var imgPattern = /\[img\](.*?)\[\/img\]/;
+
     return function (text, target) {
     	var resp = "";
         resp += text.replace(urlPattern, '<a target="' + target + '" href="$&">$&</a>');
-        //resp += text.replace(imgPattern, '<a target="' + target + '" href="$&">TEST</a>');
+        resp += text.replace(imgPattern, '<a target="' + target + '" href="$1">TEST</a>');
         return resp;
     };
 });
