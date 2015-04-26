@@ -18,7 +18,7 @@ myappFilters.filter('textFormat', function() {
 
 myApp.filter('urlToLink', function () {
     var urlPattern = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/gi;
-    var imgPattern = /\[img](.*?)\[\/img\]/gi;
+    var imgPattern = /\[img\](.*?)\[\/img\]/gi;
 
     return function (text, target) {
     	var resp = "";
