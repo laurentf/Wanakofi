@@ -4,14 +4,13 @@
 	<div ng-hide="partage.hideStuff" class="row">
 	
 		<div class="input-group">
+
 			<input ng-model="message" ui-keypress="{13:'sendMessage()'}" type="text" id="chatInput" class="form-control">
 			<div class="input-group-addon"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></div>
 			<button type="submit" class="btn btn-primary" ng-click="sendMessage()">send</button>
-			<input type="file" ng-model="chatImage" ng-change="sendImage()" class="smartFile">
-			<button type="submit" class="btn btn-primary">
-				image
-			</input>
-			</button>
+			<span class="btn btn-default btn-file">
+    			Browse <input type="file">
+			</span>
 			    
 		</div>
 	
