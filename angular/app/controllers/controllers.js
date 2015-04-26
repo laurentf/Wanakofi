@@ -209,7 +209,7 @@ myappControllers.controller('MessageCtrl', ['$scope', '$routeParams', '$location
 
     $scope.partage = Partage; // Share data between controllers
 	$scope.message = ""; // chat message
-    $scope.chatImage = "";
+    $scope.uploadme = "";
 	
     // INIT
     $scope.init = function(){
@@ -239,10 +239,7 @@ myappControllers.controller('MessageCtrl', ['$scope', '$routeParams', '$location
 	}
 
     $scope.sendImage = function (){
-        if($scope.chatImage != ""){
-            alert($scope.chatImage);
-        }
-        //var reader = new FileReader();
+       
     }
 	
     $scope.init();
