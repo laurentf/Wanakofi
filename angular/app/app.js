@@ -116,6 +116,7 @@ myApp.config(['$routeProvider', '$provide', '$httpProvider',
 
 myApp.run(function($rootScope, $location) {
     $rootScope.location = $location;
+    $rootScope.clientHost = clientHost;
 });
 
 
