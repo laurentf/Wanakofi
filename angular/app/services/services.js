@@ -40,7 +40,7 @@ myappServices.factory('MessageStorage', [ function () {
 		setId: function (room) {
 			var encRoom= window.btoa(unescape(encodeURIComponent( room )));
 			STORAGE_ID = STORAGE_ID + encRoom;
-			console.log('store for ' + room + '=>' + STORAGE_ID);
+			//console.log('store for ' + room + '=>' + STORAGE_ID);
 		},
 		get: function () {
 			return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
