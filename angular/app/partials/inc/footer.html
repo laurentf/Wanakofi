@@ -7,10 +7,12 @@
 			<input ng-model="message" ui-keypress="{13:'sendMessage()'}" type="text" id="chatInput" class="form-control">
 			<div class="input-group-addon"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></div>
 			<button type="submit" class="btn btn-primary" ng-click="sendMessage()">send</button>
+			<input type="file" ng-model="chatImage" ng-change="sendImage()" class="smartFile">
 			<button type="submit" class="btn btn-primary">
-				<input type="file" ng-model="chatImage" ng-change="sendImage()" class="smartFile">image
+				image
+			</input>
 			</button>
-			    </input>
+			    
 		</div>
 	
 	</div>
