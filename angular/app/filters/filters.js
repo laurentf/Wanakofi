@@ -21,7 +21,7 @@ myApp.filter('urlToLink', function () {
     var imgPattern = /\[img](.*?)\[\/img\]/gi;
 
     return function (text, target) {
-    	var resp = ""
+    	var resp = "";
         resp += text.replace(urlPattern, '<a target="' + target + '" href="$&">$&</a>');
         resp += text.replace(imgPattern, '<a target="' + target + '" href="$&">img</a>');
         return resp;
