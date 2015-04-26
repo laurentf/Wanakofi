@@ -18,7 +18,7 @@ myappFilters.filter('textFormat', function() {
 
 myApp.filter('getUrl', function () {
     var urlPattern = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/gi;
-    return function (text, target, otherProp) {
+    return function (text, target) {
         return text.replace(urlPattern, '<a target="' + target + '" href="$&">$&</a>');
     };
 });
