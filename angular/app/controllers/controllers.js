@@ -239,9 +239,29 @@ myappControllers.controller('MessageCtrl', ['$scope', '$routeParams', '$location
 	}
 
     $scope.$watch('uploadme', function(newValue, oldValue){
+       var resize = function (img, w) {
+            var newImg = new Image();
+            newImg.src = img;
+            var oW = img.naturalWidth;
+            var oH = img.naturalHeight;
+            // create an off-screen canvas for resized image
+            var canvas = document.createElement('canvas'),
+                ctx = canvas.getContext('2d');
+
+            // set its dimension to target size
+            canvas.width = w;
+            canvas.height = oH*(w/oW);
+            
+            // draw source image into the off-screen canvas
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+            // encode image to data-uri with base64 version of compressed image
+            return canvas.toDataURL();
+        }
+
         if(newValue != ""){
             var mome = new Date().getTime();
-            var imgMessage = "<img src=\""+newValue+"\" />";
+            var imgMessage = "<img src=\""+resize(newValue, 100)+"\" />";
             mySocket.emit('NEW_MESSAGE', {message : imgMessage, moment: mome});
         }
     });
