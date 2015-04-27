@@ -241,7 +241,7 @@ myappControllers.controller('MessageCtrl', ['$scope', '$routeParams', '$location
     $scope.$watch('uploadme', function(newValue, oldValue){
         if(newValue != ""){
             var mome = new Date().getTime();
-            var imgMessage = $sce.trustAsHtml("<img src=\""+newValue+"\" />");
+            var imgMessage = "<img src=\""+newValue+"\" />";
             mySocket.emit('NEW_MESSAGE', {message : imgMessage, moment: mome});
         }
     });
