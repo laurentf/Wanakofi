@@ -264,7 +264,7 @@ myappControllers.controller('MessageCtrl', ['$scope', '$sce','$routeParams', '$l
             var imgResize = resizeImg(newValue, 100);
             var mome = new Date().getTime();
             $scope.imgMessage = "<a href=\""+newValue+"\" target=\"_blank\"><img class=\"chatImg\" src=\""+imgResize+"\" /></a>";
-            $scope.imgMessage = $sce.trustAsHtml($scope.imgMessage);
+            //$scope.imgMessage = $sce.trustAsHtml($scope.imgMessage);
             mySocket.emit('NEW_MESSAGE', {message : $scope.imgMessage, moment: mome});
         }
     });
