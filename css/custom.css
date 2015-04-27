@@ -14,6 +14,7 @@ body{
 .chatImg {
   border: 5px solid dodgerblue;
   padding: 5px;
+  margin-bottom: 3px;
 }
 
 .btn-file {
