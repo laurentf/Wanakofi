@@ -39,15 +39,13 @@ myApp.filter('parseMessage', function () {
     var search = new Array(
 		  /\*\*(.*?)\*\*/gi,  
 		  /\*(.*?)\*/gi,
-		  /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/gi,
-		  /\[img\](.*?)\[\/img\]/gi
+		  /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/gi
 	);
 
 	var replace = new Array(
 		  "<strong>$1</strong>",
 		  "<em>$1</em>",
-		  "<a target=\"_blank\" href=\"$&\">$&</a>",
-		  "<img style=\"border: 5px solid dodgerblue;\" id=\"imgB64\" src=\""+resizeImg('$&')+"\" alt=\"test\">"
+		  "<a target=\"_blank\" href=\"$&\">$&</a>"
 	);
 		  
     return function (text) {
