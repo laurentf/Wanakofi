@@ -245,7 +245,7 @@ myappControllers.controller('MessageCtrl', ['$scope', '$routeParams', '$location
             var oW = newImg.naturalWidth;
             var oH = newImg.naturalHeight;
             // create an off-screen canvas for resized image
-            var canvas = document.createElement('canvas'),
+            var canvas = document.createElement('canvas');
             var ctx = canvas.getContext('2d');
 
             // set its dimension to target size
