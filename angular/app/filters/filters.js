@@ -57,12 +57,13 @@ myApp.filter('imgToSrc', function () {
     return function (text, target) {
     	var imgB64 = parseImg(text);
     	var imgObject = new Image();
-    	imgObject.src = imgB64;
-    	var imgResize = resizeImg(imgObject,100);
-
-    	var imgReplace = "<img ng-style=\"border: 5px solid dodgerblue;\" id=\"imgB64\" src=\""+imgResize+"\" alt=\"test\">";
     	var resp = "";
-        resp += imgReplace;
+    	imgObject.src = imgB64;
+    	if(imgB64 != ""){
+    		var imgResize = resizeImg(imgObject,100);
+    		var imgReplace = "<img style=\"border: 5px solid dodgerblue;\" id=\"imgB64\" src=\""+imgResize+"\" alt=\"test\">";
+       		resp += imgReplace;
+       	}
         return resp;
     };
 });
