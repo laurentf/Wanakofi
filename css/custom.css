@@ -11,6 +11,10 @@ body{
     padding-top: 70px;
 }
 
+.chatImg {
+  border: 3px solid dodgerblue;
+}
+
 .btn-file {
     position: relative;
     overflow: hidden;
