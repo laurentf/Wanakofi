@@ -31,7 +31,7 @@ myApp.filter('imgToSrc', function () {
 	var parseImg = function (img) {
 		var search = /\[img\](.*?)\[\/img\]/i;
 		var replace = "$1";
-		str = str.replace(search, replace);
+		var str = img.replace(search, replace);
 		
 		return str;
 	}
