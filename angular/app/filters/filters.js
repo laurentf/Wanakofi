@@ -28,9 +28,9 @@ myApp.filter('urlToLink', function () {
 
 myApp.filter('imgToSrc', function () {
 
-	var parseImg = function (img, str) {
+	var parseImg = function (img) {
 		var search = /\[img\](.*?)\[\/img\]/i;
-		var replace = "<a href=\""+img+"\" target=\"_blank\"><img style=\"border: 5px solid dodgerblue;\" id=\"imgB64\" src=\"$1\" alt=\"test\"></a>";
+		var replace = "$1";
 		str = str.replace(search, replace);
 		
 		return str;
@@ -54,13 +54,15 @@ myApp.filter('imgToSrc', function () {
 	    return canvas.toDataURL();
 	}
 
-    var imgPattern = /\[img\](.*?)\[\/img\]/i;
-	
     return function (text, target) {
+    	var imgB64 = parseImg(text);
+    	var imgObject = new Image();
+    	imgObject.src = imgB64;
+    	var imgResize = resizeImg(imgObject,100);
 
-    	var imgReplace = "<a href=\"$1\" target=\"_blank\"><img style=\"border: 5px solid dodgerblue;\" id=\"imgB64\" src=\"resizeImg($1, 100)\" alt=\"test\"></a>";
+    	var imgReplace = "<a href=\""+imgB64+"\" target=\"_blank\"><img style=\"border: 5px solid dodgerblue;\" id=\"imgB64\" src=\""+imgResize+"\" alt=\"test\"></a>";
     	var resp = "";
-        resp += text.replace(imgPattern, imgReplace);
+        resp += imgReplace;
         return resp;
     };
 });
