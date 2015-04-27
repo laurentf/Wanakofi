@@ -16,13 +16,25 @@ myappFilters.filter('textFormat', function() {
 	};
 });
 
-myApp.filter('urlToLink', function () {
-    var urlPattern = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/gi;
+myApp.filter('parseMessage', function () {
   
-    return function (text, target) {
-    	var resp = "";
-        resp += text.replace(urlPattern, '<a target="' + target + '" href="$&">$&</a>');
-        return resp;
+    var search = new Array(
+		  /\*\*(.*?)\*\*/gi,  
+		  /\*(.*?)\*/gi,
+		  /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/gi
+	);
+
+	var replace = new Array(
+		  "<strong>$1</strong>",
+		  "<em>$1</em>",
+		  "<a target=\"_blank\" href=\"$&\">$&</a>"
+	);
+		  
+    return function (text) {
+    	for (var i = 0; i < search.length; i++) {
+			text = text.replace(search[i], replace[i]);
+		}
+    	return text;
     };
 });
 
