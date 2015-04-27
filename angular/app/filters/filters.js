@@ -59,6 +59,7 @@ myApp.filter('imgToSrc', function () {
     	var imgObject = new Image();
     	var resp = "";
     	imgObject.src = imgB64;
+    	alert(imgB64);
     	if(imgB64 != ""){
     		var imgResize = resizeImg(imgObject,100);
     		var imgReplace = "<img style=\"border: 5px solid dodgerblue;\" id=\"imgB64\" src=\""+imgResize+"\" alt=\"test\">";
