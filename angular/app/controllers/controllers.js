@@ -83,8 +83,8 @@ myappControllers.controller('LobbyCtrl', ['$scope', '$routeParams', '$location',
 
 }]);
 
-myappControllers.controller('ChatCtrl', ['$scope', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils', 'mySocket', 'MessageStorage',
- function($scope, $routeParams, $location, $timeout, $filter, Partage, Utils, mySocket, MessageStorage) {
+myappControllers.controller('ChatCtrl', ['$scope', '$sce', '$routeParams', '$location', '$timeout', '$filter', 'Partage', 'Utils', 'mySocket', 'MessageStorage',
+ function($scope, $sce, $routeParams, $location, $timeout, $filter, Partage, Utils, mySocket, MessageStorage) {
 
     Partage.hideStuff = false;
 
@@ -262,8 +262,8 @@ myappControllers.controller('MessageCtrl', ['$scope', '$sce','$routeParams', '$l
         if(newValue != ""){
             var imgResize = resizeImg(newValue, 200);
             var mome = new Date().getTime();
-            var imgMessage = "<a href=\""+newValue+"\" ><img class=\"chatImg\" src=\""+imgResize+"\" /></a>";
-            mySocket.emit('NEW_MESSAGE', {message : $sce.trustAsHtml(imgMessage), moment: mome});
+            var imgMessage = "<a href=\""+newValue+"\" target=\"_blank\"><img class=\"chatImg\" src=\""+imgResize+"\" /></a>";
+            mySocket.emit('NEW_MESSAGE', {message : imgMessage, moment: mome});
         }
     });
 	

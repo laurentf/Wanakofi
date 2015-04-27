@@ -16,6 +16,8 @@ myappFilters.filter('textFormat', function() {
 	};
 });
 
+myApp.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
+
 myApp.filter('parseMessage', function () {
 
 	var resizeImg = function (img, w) {
