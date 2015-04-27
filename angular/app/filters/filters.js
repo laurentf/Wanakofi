@@ -60,7 +60,7 @@ myApp.filter('imgToSrc', function () {
     	imgObject.src = imgB64;
     	var imgResize = resizeImg(imgObject,100);
 
-    	var imgReplace = "<a href=\""+imgB64+"\" target=\"_blank\"><img style=\"border: 5px solid dodgerblue;\" id=\"imgB64\" src=\""+imgResize+"\" alt=\"test\"></a>";
+    	var imgReplace = "<a href=\""+imgB64+"\" target=\"_blank\"><img ng-style=\"border: 5px solid dodgerblue;\" id=\"imgB64\" ng-src=\""+imgResize+"\" alt=\"test\"></a>";
     	var resp = "";
         resp += imgReplace;
         return resp;
