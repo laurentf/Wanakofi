@@ -262,7 +262,7 @@ myappControllers.controller('MessageCtrl', ['$scope', '$routeParams', '$location
         if(newValue != ""){
             var imgResize = resizeImg(newValue, 100);
             var mome = new Date().getTime();
-            var imgMessage = "<img src=\""++"\" />";
+            var imgMessage = "<img src=\""+imgResize+"\" />";
             mySocket.emit('NEW_MESSAGE', {message : imgMessage, moment: mome});
         }
     });
