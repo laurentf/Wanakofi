@@ -12,6 +12,7 @@ This project intends to show the "power" of NodeJS/Socket.io as an API with a re
 * A chat page, people are grouped by tag/hashtag in order to share and talk
 * Socket.io client with on/emit events (realtime)
 * A button let you join to another tag if needed
+* bold and italic text with markdown syntax
 * Logout
 
 ## Dependencies
