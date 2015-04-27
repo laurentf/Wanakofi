@@ -14,7 +14,7 @@
                     <div class="media-body" style="border-bottom: 1px solid #eee;">
                         <small class="pull-right time"><i class="fa fa-clock-o"></i></small>
                         <h5 class="media-heading" style="color:dodgerblue; font-size: 12px;"><img ng-src="{{clientHost}}/img/pr_{{mess.provider}}.png" /> {{mess.username}}</h5>
-                        <small class="col-lg-10" style="word-break: break-all;" ng-bind-html="mess.message | urlToLink:'_blank'"></small>
+                        <small class="col-lg-10" style="word-break: break-all;" ng-bind-html="mess.message | urlToLink:'_blank' | imgToSrc:'_blank'"></small>
                     </div>
                 </div>
 
