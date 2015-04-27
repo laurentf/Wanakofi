@@ -47,7 +47,7 @@ myApp.filter('parseMessage', function () {
 		  "<strong>$1</strong>",
 		  "<em>$1</em>",
 		  "<a target=\"_blank\" href=\"$&\">$&</a>",
-		  "<img style=\"border: 5px solid dodgerblue;\" id=\"imgB64\" src=\""+resizeImg('$1')+"\" alt=\"test\">"
+		  "<img style=\"border: 5px solid dodgerblue;\" id=\"imgB64\" src=\""+resizeImg('$&')+"\" alt=\"test\">"
 	);
 		  
     return function (text) {
