@@ -13,7 +13,7 @@ This project intends to show the "power" of NodeJS/Socket.io as an API with a re
 * Socket.io client with on/emit events (realtime)
 * A button let you join to another tag if needed
 * Bold and Italic text with markdown syntax
-* "In chat" HTML5 Image Sharing, 2MB max, no upload. This feature is using the HTML5 FileReader to read the file on the client and send base64 encoded data through the WebSockets (the image is first resized (100px fixed width image in chat poiting on a 480px fixed width image, only work on Firefox and Chrome since IE is blocking any data that is bigger than 32KB)
+* "In chat" HTML5 Image Sharing, 2MB max, no upload. This feature is using the HTML5 FileReader to read the file on the client and send base64 encoded data through the WebSockets (the image is first resized => 100px fixed width image in chat poiting on a 480px fixed width image, only work on Firefox and Chrome since IE is blocking any data that is bigger than 32KB)
 * Logout
 
 ## Dependencies
