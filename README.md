@@ -22,7 +22,6 @@ This project intends to show the "power" of NodeJS/Socket.io as an API with a re
 * AngularJS 1.3.8
 * Bootstrap 3.3.4 - Bootswatch theme => https://bootswatch.com/paper/
 * Angular core modules : resource, cookie, animate, route, sanitize...
-* Socket.io client for Angular - 
 * Bootstrap UI for Angular - https://angular-ui.github.io/bootstrap/
 * Utils UI for Angular - http://angular-ui.github.io/ui-utils/
 * Peity - http://benpickles.github.io/peity/ and Angular Peity directive - https://github.com/projectweekend/angular-peity
